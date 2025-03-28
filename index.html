@@ -10,8 +10,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
             background-color: #f5f5f5;
         }
         
@@ -24,6 +25,15 @@
             align-items: center;
             width: 200px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+        
+        .labels-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 100%;
         }
         
         .qr-code-container {
@@ -31,7 +41,6 @@
             border: 1px dashed #000;
             padding: 10px;
             margin-top: 15px;
-            margin-bottom: 5px;
             text-align: center;
         }
         
@@ -42,7 +51,6 @@
             transform: translateX(-50%);
             background-color: white;
             padding: 0 5px;
-            font-weight: bold;
             font-size: 10px;
         }
         
@@ -64,23 +72,394 @@
             font-size: 20px;
         }
         
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-green {
+            background-color: #4CAF50;
+        }
+        
+        .btn-blue {
+            background-color: #2196F3;
+        }
+        
+        @media (max-width: 768px) {
+            .labels-container {
+                gap: 10px;
+            }
+            
+            .label {
+                width: 180px;
+                padding: 10px 0;
+            }
+            
+            .qr-code {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .labels-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .label {
+                width: 90%;
+                max-width: 250px;
+            }
+        }
+        
         @media print {
             body {
                 background-color: white;
+                padding: 0;
+                margin: 0;
             }
             
-            .print-button {
+            .print-button, .btn, .excel-section, .divider {
                 display: none;
             }
             
             .label {
                 box-shadow: none;
                 border: 1px dashed #ccc;
+                break-inside: avoid;
+                margin: 10px;
+                page-break-inside: avoid;
+                position: relative;
+            }
+            
+            .labels-container {
+                gap: 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .qr-code-container {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .qr-code {
+                width: 120px !important;
+                height: 120px !important;
+                margin: 0 auto;
+                display: block;
+            }
+            
+            .scan-text {
+                position: absolute;
+                top: -8px;
+                background-color: white;
+                padding: 0 5px;
+                font-size: 10px;
+                z-index: 1;
             }
         }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-right: 15px;
+        }
+        
+        .input-label {
+            font-weight: 500;
+            margin-right: 8px;
+            color: #333;
+        }
+        
+        .number-input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .number-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        
+        .update-btn {
+            background-color: #FF9800;
+            margin-left: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .update-btn:hover {
+            background-color: #F57C00;
+        }
+        
+        .excel-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .excel-section h3 {
+            margin-top: 0;
+            color: #2196F3;
+        }
+        
+        .file-input-container {
+            margin: 15px 0;
+        }
+        
+        .file-input-label {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background-color: #0b7dda;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .excel-info {
+            display: none;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+        }
+        
+        .excel-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .divider {
+            margin: 20px 0;
+            border-top: 1px dashed #ccc;
+            width: 100%;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
+        let labelCount = 1; // 默认标签数量
+        let urlData = []; // 存储从Excel导入的URL数据
+        let copiesPerUrl = 1; // 每个URL生成的标签数量
+        
         function generateRandomCLG() {
+            // 为每个标签生成不同的随机CLG码和产品代码
+            for (let i = 1; i <= labelCount; i++) {
+                // 生成12位随机数字
+                let digits = '';
+                for (let j = 0; j < 12; j++) {
+                    digits += Math.floor(Math.random() * 10);
+                }
+                
+                // 每3位分割一次
+                const formattedDigits = digits.match(/.{1,3}/g).join(' ');
+                
+                // 更新CLG显示
+                document.getElementById('clg-number-' + i).innerHTML = 'CLG ' + formattedDigits;
+                
+                // 更新502607中的最后两位数字
+                const lastTwoDigits = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+                document.getElementById('product-code-' + i).innerHTML = '105576:5026' + lastTwoDigits;
+            }
+        }
+        
+        function updateLabelCount() {
+            const count = parseInt(document.getElementById('label-count-input').value);
+            if (isNaN(count) || count < 1) {
+                alert('请输入有效的标签数量');
+                return;
+            }
+            
+            labelCount = count;
+            const container = document.getElementById('labels-container');
+            container.innerHTML = ''; // 清空容器
+            
+            // 创建指定数量的标签
+            for (let i = 1; i <= count; i++) {
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'label';
+                labelDiv.innerHTML = `
+                    <div class="label-text">
+                        <div style="border-top: 1px solid #000; width: 25%; margin: 0 auto 5px auto;"></div>
+                        <div id="product-code-${i}" style="font-size: 10px; text-align: center; margin-bottom: 5px;">105576:502607</div>
+                        <div style="text-align: center; font-size: 12px; margin-bottom: 30px;">Apparel</div>
+                        <div class="title" style="margin-bottom: 2px;">ESSENTIALS</div>
+                        <div style="font-weight: bold; margin-bottom: 10px;">FEAR OF GOD</div>
+                        <div style="font-size: 14px;">Check authenticity at</div>
+                        <div style="font-size: 11px;">WWW.CERTILOGO.COM</div>
+                        <div id="clg-number-${i}" style="font-size: 13px;">CLG 220 167 785 836</div>
+                    </div>
+                    <div class="qr-code-container">
+                        <div class="scan-text">or scan</div>
+                        <img src="image/1.png" alt="二维码" class="qr-code">
+                    </div>
+                `;
+                container.appendChild(labelDiv);
+            }
+            
+            // 生成随机CLG码
+            generateRandomCLG();
+        }
+        
+        function handleExcelUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    
+                    // 假设Excel第一列是URL
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, {header: 'A'});
+                    // 跳过第一行（表头行）
+                    urlData = jsonData.slice(1).map(row => row.A).filter(url => url && typeof url === 'string');
+                    
+                    if (urlData.length === 0) {
+                        alert('未找到有效的URL数据。请确保Excel第一列包含URL。');
+                        return;
+                    }
+                    
+                    document.getElementById('url-count').textContent = urlData.length;
+                    document.getElementById('excel-info').style.display = 'block';
+                    
+                    // 启用生成按钮
+                    document.getElementById('generate-from-excel').disabled = false;
+                } catch (error) {
+                    console.error('处理Excel文件时出错:', error);
+                    alert('处理Excel文件时出错: ' + error.message);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function generateLabelsFromExcel() {
+            if (urlData.length === 0) {
+                alert('请先上传包含URL的Excel文件');
+                return;
+            }
+            
+            copiesPerUrl = parseInt(document.getElementById('copies-per-url').value) || 1;
+            if (copiesPerUrl < 1) {
+                alert('每个URL的标签数量必须大于0');
+                return;
+            }
+            
+            const container = document.getElementById('labels-container');
+            container.innerHTML = ''; // 清空容器
+            
+            let labelIndex = 1;
+            
+            // 为每个URL创建指定数量的标签
+            urlData.forEach((url, urlIndex) => {
+                // 为每个URL生成唯一的产品代码前缀
+                const productCodePrefix = '105576:5026';
+                
+                for (let copy = 0; copy < copiesPerUrl; copy++) {
+                    // 生成随机的两位数字作为产品代码后缀
+                    const randomSuffix = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+                    const productCode = productCodePrefix + randomSuffix;
+                    
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = 'label';
+                    
+                    // 创建标签内容
+                    labelDiv.innerHTML = `
+                        <div class="label-text">
+                            <div style="border-top: 1px solid #000; width: 25%; margin: 0 auto 5px auto;"></div>
+                            <div id="product-code-${labelIndex}" style="font-size: 10px; text-align: center; margin-bottom: 5px;">${productCode}</div>
+                            <div style="text-align: center; font-size: 12px; margin-bottom: 30px;">Apparel</div>
+                            <div class="title" style="margin-bottom: 2px;">ESSENTIALS</div>
+                            <div style="font-weight: bold; margin-bottom: 10px;">FEAR OF GOD</div>
+                            <div style="font-size: 14px;">Check authenticity at</div>
+                            <div style="font-size: 11px;">WWW.CERTILOGO.COM</div>
+                            <div id="clg-number-${labelIndex}" style="font-size: 13px;">CLG ${generateRandomCLGNumber()}</div>
+                        </div>
+                        <div class="qr-code-container">
+                            <div class="scan-text">or scan</div>
+                            <div id="qrcode-${labelIndex}" class="qr-code"></div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(labelDiv);
+                    
+                    // 存储当前的URL和标签索引，以便在DOM完全渲染后使用
+                    const currentUrl = url;
+                    const currentIndex = labelIndex;
+                    
+                    // 使用requestAnimationFrame确保DOM已经渲染
+                    requestAnimationFrame(() => {
+                        try {
+                            // 确保元素存在
+                            const qrcodeElement = document.getElementById(`qrcode-${currentIndex}`);
+                            if (qrcodeElement) {
+                                new QRCode(qrcodeElement, {
+                                    text: currentUrl,
+                                    width: 120,
+                                    height: 120,
+                                    colorDark: "#000000",
+                                    colorLight: "#ffffff",
+                                    correctLevel: QRCode.CorrectLevel.H
+                                });
+                            } else {
+                                console.error(`找不到ID为qrcode-${currentIndex}的元素`);
+                            }
+                        } catch (error) {
+                            console.error('生成二维码时出错:', error);
+                        }
+                    });
+                    
+                    labelIndex++;
+                }
+            });
+        }
+        
+        function generateRandomCLGNumber() {
             // 生成12位随机数字
             let digits = '';
             for (let i = 0; i < 12; i++) {
@@ -88,67 +467,102 @@
             }
             
             // 每3位分割一次
-            const formattedDigits = digits.match(/.{1,3}/g).join(' ');
-            
-            // 更新CLG显示
-            document.getElementById('clg-number').innerHTML = 'CLG ' + formattedDigits;
-            
-            // 更新502607中的最后两位数字
-            const lastTwoDigits = Math.floor(Math.random() * 100).toString().padStart(2, '0');
-            document.getElementById('product-code').innerHTML = '105576:5026' + lastTwoDigits;
+            return digits.match(/.{1,3}/g).join(' ');
         }
         
-        // 页面加载时生成一次
-        window.onload = generateRandomCLG;
+        // 页面加载时生成默认数量的标签
+        window.onload = function() {
+            updateLabelCount();
+        };
         
         function printLabel() {
             window.print();
         }
+        
+        function generateExcelTemplate() {
+            // 创建一个新的工作簿
+            const wb = XLSX.utils.book_new();
+            
+            // 创建示例数据
+            const data = [
+                ["URL"], // 表头
+                ["https://example.com/product1"],
+                ["https://example.com/product2"],
+                ["https://example.com/product3"]
+            ];
+            
+            // 将数据转换为工作表
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            
+            // 将工作表添加到工作簿
+            XLSX.utils.book_append_sheet(wb, ws, "URLs");
+            
+            // 生成Excel文件并下载
+            XLSX.writeFile(wb, "标签URL模板.xlsx");
+        }
     </script>
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-        <div class="label">
-            <div class="label-text">
-                <div style="border-top: 1px solid #000; width: 25%; margin: 0 auto 5px auto;"></div>
-                <div id="product-code" style="font-size: 10px; text-align: center; margin-bottom: 5px;">105576:502607</div>
-                <div style="text-align: center; font-size: 12px; margin-bottom: 30px;">Apparel</div>
-                <div class="title" style="margin-bottom: 2px;">ESSENTIALS</div>
-                <div style="font-weight: bold; margin-bottom: 10px;">FEAR OF GOD</div>
-                <div style="font-size: 14px;">Check authenticity at</div>
-                <div style="font-size: 11px;">WWW.CERTILOGO.COM</div>
-                <div id="clg-number" style="font-size: 13px;">CLG 220 167 785 836</div>
-            </div>
-            <div class="qr-code-container">
-                <div class="scan-text">or scan</div>
-                <img src="image/1.png" alt="二维码" class="qr-code">
-            </div>
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+     
+        
+        <div class="buttons-container">
+           
         </div>
         
-        <div style="display: flex; gap: 10px;">
-            <button onclick="generateRandomCLG()" style="
-                padding: 8px 16px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                font-size: 14px;
-                cursor: pointer;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                transition: all 0.3s ease;
-            ">随机生成CLG码</button>
+ 
+        
+        <div class="excel-section">
+            <h3>从Excel批量生成标签</h3>
+            <p>上传包含URL的Excel文件，系统将为每个URL生成对应的二维码和标签。</p>
+            <p>生成的标签效果如下图所示，每个URL将生成带有唯一二维码的标签：</p>
             
-            <button onclick="printLabel()" class="print-button" style="
-                padding: 8px 16px;
-                background-color: #2196F3;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                font-size: 14px;
-                cursor: pointer;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                transition: all 0.3s ease;
-            ">打印标签</button>
+            <div style="margin: 15px 0; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; border-radius: 4px; text-align: center;">
+                <div style="display: inline-block; width: 200px; padding: 15px 0; border: 1px dashed #ccc; background-color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <div style="text-align: center;">
+                        <div style="border-top: 1px solid #000; width: 25%; margin: 0 auto 5px auto;"></div>
+                        <div style="font-size: 10px; text-align: center; margin-bottom: 5px;">105576:502670</div>
+                        <div style="text-align: center; font-size: 12px; margin-bottom: 30px;">Apparel</div>
+                        <div style="font-weight: bold; font-size: 20px; margin-bottom: 2px;">ESSENTIALS</div>
+                        <div style="font-weight: bold; margin-bottom: 10px;">FEAR OF GOD</div>
+                        <div style="font-size: 14px;">Check authenticity at</div>
+                        <div style="font-size: 11px;">WWW.CERTILOGO.COM</div>
+                        <div style="font-size: 13px;">CLG 929 852 578 840</div>
+                    </div>
+                    <div style="position: relative; border: 1px dashed #000; padding: 10px; margin: 15px auto 0; width: 120px; text-align: center;">
+                        <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background-color: white; padding: 0 5px; font-size: 10px;">or scan</div>
+                        <img src="image/1.png" alt="二维码示例" style="width: 120px; height: 120px;">
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div class="file-input-container">
+                    <label for="excel-file" class="file-input-label">选择Excel文件</label>
+                    <input type="file" id="excel-file" class="file-input" accept=".xlsx,.xls" onchange="handleExcelUpload(event)">
+                </div>
+                
+                <button onclick="generateExcelTemplate()" class="btn" style="background-color: #607D8B;">
+                    下载Excel模板
+                </button>
+            </div>
+            
+            <div id="excel-info" class="excel-info">
+                已读取 <span id="url-count">0</span> 个URL
+            </div>
+            
+            <div class="excel-controls">
+                <div class="input-group">
+                    <label for="copies-per-url" class="input-label">每个URL标签数:</label>
+                    <input type="number" id="copies-per-url" min="1" max="10" value="1" class="number-input">
+                </div>
+                <button id="generate-from-excel" onclick="generateLabelsFromExcel()" class="btn btn-green" disabled>生成标签</button>
+                <button onclick="printLabel()" class="btn btn-blue print-button" style="margin-left: 10px;">打印标签</button>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div id="labels-container" class="labels-container">
+            <!-- 标签将通过JavaScript动态生成 -->
         </div>
     </div>
 </body>
